@@ -260,8 +260,16 @@ export default function Features() {
               <div className="bg-white dark:bg-black rounded-3xl p-6 flex-1 flex items-center justify-center">
                 {/* Caption example on video */}
                 <div className="relative w-full max-w-xs">
-                  <div className="bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl aspect-[9/16] shadow-2xl flex items-end justify-center p-6">
-                    <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-6 py-3 rounded-full">
+                  <div className="rounded-2xl aspect-[9/16] shadow-2xl flex items-end justify-center p-6 relative overflow-hidden">
+                    <video
+                      src="https://strshrt.xyz/dinosaurs.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover rounded-2xl"
+                    />
+                    <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-6 py-3 rounded-full relative z-10">
                       <p className="text-black dark:text-white font-bold text-lg text-center">
                         TWIST
                       </p>
