@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const navLinks = [
   { label: "Home", href: "/dashboard" },
@@ -18,7 +19,7 @@ const MobileNavbar = () => {
   return (
     <nav className="md:hidden fixed top-0 left-0 w-full z-50 bg-black border-b border-gray-800">
       <div className="flex items-center justify-between px-4 py-3">
-        <img src="/logo.jpeg" alt="StoryShort Logo" className="h-7 w-7 rounded" />
+        <Image src="/logo.jpeg" alt="StoryShort Logo" width={28} height={28} className="h-7 w-7 rounded" />
         <button
           className="text-white focus:outline-none"
           onClick={() => setOpen(!open)}
