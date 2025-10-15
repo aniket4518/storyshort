@@ -26,9 +26,7 @@ export default function Navbar() {
           {/* Left section - Logo and Nav Links */}
           <div className={`flex flex-row items-center transition-all duration-300 ${scrolled ? 'gap-1' : 'gap-2'}`}>
             <a className="font-normal flex space-x-2 items-center text-sm mr-4 text-black px-2 py-1 relative z-20 dark:text-white" href="/">
-              <div className="w-[30px] h-[30px] flex items-center justify-center">
-                {/* Place your logo SVG here */}
-              </div>
+              <img src="/logo.jpeg" alt="StoryShort Logo" className="h-7 w-7 rounded" />
               <span className="text-lg font-bold">StoryShort</span>
             </a>
             <div className={`flex items-center transition-all duration-300 ${scrolled ? 'gap-0.5' : 'gap-1.5'}`}>
@@ -69,9 +67,7 @@ export default function Navbar() {
       <div className="flex h-full w-full items-center lg:hidden">
         <div className="flex justify-between bg-white/80 dark:bg-[#18181b]/80 backdrop-blur-md items-center w-full rounded-md px-2.5 py-1.5 transition duration-200">
           <a className="font-normal flex space-x-2 items-center text-sm mr-4 text-black px-2 py-1 relative z-20 dark:text-white" href="/">
-            <div className="w-[30px] h-[30px]">
-              {/* Logo */}
-            </div>
+            <img src="/logo.jpeg" alt="StoryShort Logo" className="h-7 w-7 rounded" />
             <span className="text-lg font-bold">StoryShort</span>
           </a>
           {/* Hamburger icon */}

@@ -2,8 +2,16 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { signIn, getSession } from "next-auth/react"
 
 export default function Authpage({isSignin}:{isSignin:boolean}){
+     const handleGoogleSignIn = async () => {
+        try {
+            await signIn("google", { callbackUrl: "/dashboard" });
+        } catch (error) {
+            console.error("Google sign in failed", error);
+        }
+    }
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -142,6 +150,7 @@ export default function Authpage({isSignin}:{isSignin:boolean}){
                         {/* Google Sign In */}
                         <button
                             type="button"
+                            onClick={handleGoogleSignIn}
                             className="w-full bg-gray-900 hover:bg-gray-800 border border-gray-800 text-white font-medium py-3.5 rounded-full transition-colors flex items-center justify-center gap-3"
                         >
                             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
