@@ -1,5 +1,6 @@
 // ...existing code...
 import React from "react";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -43,22 +44,24 @@ export default function Hero() {
           </p>
 
           {/* CTA Button */}
-          <button className="inline-flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-black font-bold text-lg px-8 py-4 rounded-full w-fit transition-colors shadow-lg">
-            Get Started
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
+          <Link href="/signup" passHref legacyBehavior>
+            <a className="inline-flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-black font-bold text-lg px-8 py-4 rounded-full w-fit transition-colors shadow-lg">
+              Get Started
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </a>
+          </Link>
         </div>
 
         {/* Right Content - Video Cards */}
