@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model User {
+  id             String    @id @default(cuid())
+  email          String    @unique
+  name           String?
+  Password       String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  // Tracks the number of summaries a user can create.
+  // You could refill this monthly or based on their plan.
+  credits        Int       @default(10)
+
+  // A user can create many summaries.
+  summaries      Summary[]
+
+  // A user has one subscription (optional).
+  subscription   Subscription?
+}
+
+// ## Summary Model
+// Represents a single summarization job. It stores the original content
+// (URL or text) and the final AI-generated summary.
+model Summary {
+  id                  String   @id @default(cuid())
+  title               String?
+  originalContentUrl  String?
+  originalContentText String?  // Use a text/string type appropriate for long content.
+  generatedSummary    String?  // Nullable until the job is complete.
+  status              SummaryStatus @default(PENDING)
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  // Foreign key linking back to the User.
+  userId              String
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId]) // Adds a database index for faster lookups by user.
+}
+
+// ## Subscription Model (Optional but recommended for monetization)
+// Manages user payment plans and links to a payment provider like Stripe.
+model Subscription {
+  id                   String     @id @default(cuid())
+  plan                 Plan       @default(FREE)
+  status               String?    
+
+  // IDs from your payment provider.
+  stripeCustomerId     String?    @unique
+  stripeSubscriptionId String?    @unique
+  currentPeriodEnd     DateTime?  // Date when the current subscription period ends.
+
+  // One-to-one relationship with the User.
+  userId               String     @unique
+  user                 User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+ 
+enum SummaryStatus {
+  PENDING     
+  PROCESSING  
+  COMPLETED   
+  FAILED       
+}
+
+// ## Defines the available subscription tiers.
+enum Plan {
+  FREE
+  PRO
+  BUSINESS
+}
