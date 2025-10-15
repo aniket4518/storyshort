@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const DashboardHome = () => {
   return (
@@ -7,7 +8,7 @@ const DashboardHome = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 px-2 md:px-0 gap-2">
         <div className="text-lg md:text-xl font-semibold text-gray-300">Dashboard</div>
         <div className="flex items-center gap-2">
-          <span className="text-purple-400 text-xs md:text-sm bg-[#18181B] px-3 py-1 rounded-full">You're on Free Plan Upgrade to export videos and more.</span>
+          <span className="text-purple-400 text-xs md:text-sm bg-[#18181B] px-3 py-1 rounded-full">You&apos;re on Free Plan Upgrade to export videos and more.</span>
           <button className="bg-purple-700 hover:bg-purple-800 text-white px-4 py-2 rounded-lg text-xs md:text-sm font-semibold">Upgrade</button>
         </div>
       </div>
@@ -16,7 +17,7 @@ const DashboardHome = () => {
       <div className="flex flex-col md:flex-row gap-4 md:gap-8 bg-[#18181B] rounded-2xl p-4 md:p-8 items-center mb-8 shadow-lg w-full">
         <div className="flex-1 w-full">
           <h1 className="text-xl md:text-4xl font-semibold mb-4">Welcome to StoryShort <span className="inline-block">👋</span></h1>
-          <p className="text-gray-300 text-base md:text-lg mb-8">Create faceless videos on Auto-Pilot for any purpose using AI, in seconds.</p>
+        <p className="text-gray-300 text-base md:text-lg mb-8">Create faceless videos on Auto-Pilot for any purpose using AI, in seconds.</p>
           <div className="flex flex-col sm:flex-row gap-4 w-full">
             <button className="flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-4 md:px-6 py-3 rounded-lg text-base md:text-lg font-semibold shadow-lg w-full sm:w-auto">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
@@ -29,7 +30,7 @@ const DashboardHome = () => {
         </div>
         <div className="flex-1 flex justify-center w-full">
           <div className="rounded-2xl overflow-hidden shadow-lg w-full max-w-md">
-            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="dashboard" className="w-full h-32 md:h-56 object-cover" />
+              <Image src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="dashboard" width={600} height={320} className="w-full h-32 md:h-56 object-cover" />
           </div>
         </div>
       </div>

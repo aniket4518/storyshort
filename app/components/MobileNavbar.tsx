@@ -19,7 +19,9 @@ const MobileNavbar = () => {
   return (
     <nav className="md:hidden fixed top-0 left-0 w-full z-50 bg-black border-b border-gray-800">
       <div className="flex items-center justify-between px-4 py-3">
-        <Image src="/logo.jpeg" alt="StoryShort Logo" width={28} height={28} className="h-7 w-7 rounded" />
+        <div className="h-7 w-7 rounded overflow-hidden">
+          <Image src="/logo.jpeg" alt="StoryShort Logo" width={28} height={28} />
+        </div>
         <button
           className="text-white focus:outline-none"
           onClick={() => setOpen(!open)}

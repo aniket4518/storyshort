@@ -1,8 +1,7 @@
 "use client"
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { signIn, getSession } from "next-auth/react"
+import { signIn } from "next-auth/react"
 
 export default function Authpage({isSignin}:{isSignin:boolean}){
      const handleGoogleSignIn = async () => {
@@ -122,7 +121,7 @@ export default function Authpage({isSignin}:{isSignin:boolean}){
                         <div className="text-center">
                             {isSignin ? (
                                 <p className="text-gray-400">
-                                    Don' have an account?{" "}
+                                    Don&apos;t have an account?{" "}
                                     <Link href="/signup" className="text-white hover:underline font-medium">
                                         Sign up
                                     </Link>

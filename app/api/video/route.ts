@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
 
 const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/veo-3:generateVideo";
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -25,15 +24,14 @@ async function generateVideoWithGemini(userPrompt: string): Promise<string> {
 }
 
 export async function POST(req: NextRequest) {
-  const { prompt, userId } = await req.json();
+  const { prompt } = await req.json();
   if (!prompt) {
     return NextResponse.json({ error: "Prompt is required" }, { status: 400 });
   }
  
-  let videoUrl = "";
   try {
-    videoUrl = await generateVideoWithGemini(prompt);
-  } catch (err) {
+    await generateVideoWithGemini(prompt);
+  } catch {
     return NextResponse.json({ error: "Failed to generate video" }, { status: 500 });
   }
  

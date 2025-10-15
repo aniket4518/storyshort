@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import SidebarProfile from "../../components/SidebarProfile";
 import Link from "next/link";
 import MobileNavbar from "../../components/MobileNavbar";
@@ -11,7 +12,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <aside className="hidden md:flex w-72 bg-black p-4 md:p-6 min-h-[80px] md:min-h-screen flex-col justify-between items-stretch">
         <div className="flex-1 flex flex-col gap-4 md:gap-0">
           <div className="flex items-center gap-2 mb-4 md:mb-8">
-            <img src="/logo.jpeg" alt="StoryShort Logo" className="h-7 w-7 rounded" />
+            <Image src="/logo.jpeg" alt="StoryShort Logo" width={28} height={28} className="h-7 w-7 rounded" />
             <span className="text-yellow-400 text-xl font-bold">StoryShort.ai</span>
           </div>
           <nav className="flex flex-col gap-2 mb-4 md:mb-8 overflow-x-auto">
@@ -61,7 +62,7 @@ function SidebarItem({ label, icon, href }: SidebarItemProps) {
         href={href}
         className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-[#23232A]"
       >
-        <img src={icon} alt="icon" className="h-5 w-5" />
+  <Image src={icon} alt="icon" width={20} height={20} className="h-5 w-5" />
         {label}
       </Link>
     );
@@ -70,7 +71,7 @@ function SidebarItem({ label, icon, href }: SidebarItemProps) {
     <span
       className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-400"
     >
-      <img src={icon} alt="icon" className="h-5 w-5" />
+  <Image src={icon} alt="icon" width={20} height={20} className="h-5 w-5" />
       {label}
     </span>
   );

@@ -1,4 +1,4 @@
-import Image from "next/image";
+// ...existing code...
 import React from "react";
 
 export default function Hero() {

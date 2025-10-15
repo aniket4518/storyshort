@@ -1,8 +1,6 @@
-import NextAuth, { type NextAuthOptions, type Session, type DefaultSession } from "next-auth";
-import { PrismaAdapter } from "@auth/prisma-adapter";
+import NextAuth, { type NextAuthOptions, type DefaultSession } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import prisma from "@/lib/prisma"; // <-- IMPORTING YOUR PRISMA CLIENT
 
 // Extend NextAuth Session type to include user.id
 declare module "next-auth" {
@@ -21,7 +19,7 @@ declare module "next-auth" {
 // This is the core of your NextAuth configuration.
 // It tells NextAuth how to handle authentication.
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   // TEMPORARILY DISABLED: Use the Prisma Adapter - will enable after schema is synced
   // adapter: PrismaAdapter(prisma),
   
@@ -73,7 +71,7 @@ export const authOptions: NextAuthOptions = {
 
   // Callbacks
   callbacks: {
-    async jwt({ token, user, account, profile }) {
+  async jwt({ token, user, account }) {
       console.log("[JWT Callback] Triggered");
       if (user) {
         console.log("[JWT Callback] User:", user);
@@ -85,14 +83,14 @@ export const authOptions: NextAuthOptions = {
       }
       return token;
     },
-    async session({ session, token }) {
+  async session({ session, token }) {
       console.log("[Session Callback] Triggered");
       if (session.user && token.id) {
         session.user.id = token.id as string;
       }
       return session;
     },
-    async signIn({ user, account, profile, email, credentials }) {
+  async signIn({ user, account }) {
       console.log("====================================");
       console.log("[SignIn Callback] Triggered");
       console.log("[SignIn Callback] Provider:", account?.provider);
@@ -119,10 +117,10 @@ export const authOptions: NextAuthOptions = {
   
   // Events for logging
   events: {
-    async signIn({ user, account, profile }) {
+    async signIn({ user }) {
       console.log("User signed in:", user.email);
     },
-    async signOut({ session, token }) {
+    async signOut() {
       console.log("User signed out");
     },
   },
